@@ -1,0 +1,5 @@
+#!/bin/bash
+sed -e "s/#MODULE_NAME#/$1/" -e "/#MODULE#/ {
+r $2
+d
+}" wrapper

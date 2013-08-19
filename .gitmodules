@@ -1,0 +1,3 @@
+[submodule "uspec"]
+	path = uspec
+	url = https://github.com/lloeki/uspec-js.git

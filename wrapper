@@ -1,0 +1,6 @@
+(function () {
+    Module = require('module');
+    Module.define('#MODULE_NAME#', function (exports, require, module) {
+#MODULE#
+    });
+}).call(this);

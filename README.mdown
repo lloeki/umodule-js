@@ -1,0 +1,65 @@
+# µModule
+
+µModule is a minimalist CommonJS module definition and requirement implementation, squarely
+aimed at browsers.
+
+## Usage
+
+Load `umodule.js` before any other:
+
+```html
+<script src='/path/to/umodule.js'></script>
+<script src='/path/to/modularized.js'></script>
+...
+```
+
+Then in your application assets:
+
+```coffee
+# umodule.js is itsef a module and only exports `require` globally.
+define = require('module').define
+
+# define a module
+define 'foo', (exports) ->
+    exports.hello = (w) -> 'hello, #{w}!'
+```
+
+Subsequently, in another asset:
+
+```coffee
+foo = require('foo')
+
+console.log foo.hello()
+```
+
+There is no loader: all code is supposed to be loaded by an asset pipeline and
+your typical user agent request. Therefore the goal is merely to isolate code
+into modules and retrieve their exported interface in a given scope, using
+CommonJS semantics. If you want a loader behavior, look into RequireJS.
+
+
+## Examples
+
+Although available as a global, require is passed as a second argument,
+shadowing the global and (NIY) allowing for relative imports:
+
+```coffee
+Module = require('module')
+
+Module.define 'bob/alice', (exports, require) ->
+    foo = require 'foo'
+    exports.eve = -> foo.hello()
+```
+
+The module itself is passed as a third argument.
+
+```coffee
+Module.define 'dave', (exports, require, module) ->
+    my_exports = require module.id
+```
+
+## Testing
+
+Run with `make spec`. Testing depends on [uspec][uspec], included as a git submodule, and runs on phantomjs.
+
+[uspec]: https://github.com/lloeki/uspec-js
