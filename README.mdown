@@ -3,6 +3,8 @@
 µModule is a minimalist CommonJS module definition and requirement implementation, squarely
 aimed at browsers.
 
+[![Build Status](https://travis-ci.org/lloeki/umodule-js.svg?branch=master)](https://travis-ci.org/lloeki/umodule-js)
+
 ## Usage
 
 Load `umodule.js` before any other:
